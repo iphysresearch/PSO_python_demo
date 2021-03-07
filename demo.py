@@ -65,28 +65,28 @@ if __name__ == '__main__':
     plt.savefig('output_psd.png', dpi=100)
 
 
-#     # Number of independent PSO runs
-#     nRuns = 8
+    # Number of independent PSO runs
+    nRuns = 8
 
-#     ## PSO
-#     # Input parameters for CRCBQCHRPPSO
-#     inParams = {
-#         'dataX': t,
-#         'dataY': dataY,
-#         'dataXSq': t**2,
-#         'dataXCb': t**3,
-#         'psdPosFreq': psdPosFreq,
-#         'sampFreq': Fs,
-#         'rmin': rmin,
-#         'rmax': rmax,
-#     }
-#     # CRCBQCHRPPSOPSD runs PSO on the CRCBQCHRPFITFUNC fitness function. As an
-#     # illustration of usage, we change one of the PSO parameters from its
-#     # default value.
-#     outResults, outStruct = crcbqcpsopsd(inParams, {'maxSteps': 2000}, nRuns)
+    ## PSO
+    # Input parameters for CRCBQCHRPPSO
+    inParams = {
+        'dataX': t,
+        'dataY': dataY,
+        'dataXSq': t**2,
+        'dataXCb': t**3,
+        'psdPosFreq': psdPosFreq,
+        'sampFreq': Fs,
+        'rmin': rmin,
+        'rmax': rmax,
+    }
+    # CRCBQCHRPPSOPSD runs PSO on the CRCBQCHRPFITFUNC fitness function. As an
+    # illustration of usage, we change one of the PSO parameters from its
+    # default value.
+    outResults, outStruct = crcbqcpsopsd(inParams, {'maxSteps': 2000}, nRuns)
 
-#     print('Estimated parameters: a1={}; a2={}; a3={}'.format(outResults['bestQcCoefs'][0],
-#                                                              outResults['bestQcCoefs'][1],
-#                                                              outResults['bestQcCoefs'][2]))
-#     np.save('output_results',outResults)
-#     np.save('output_struct',output_struct)
+    print('Estimated parameters: a1={}; a2={}; a3={}'.format(outResults['bestQcCoefs'][0],
+                                                             outResults['bestQcCoefs'][1],
+                                                             outResults['bestQcCoefs'][2]))
+    np.save('output_results',outResults)
+    np.save('output_struct',output_struct)
