@@ -4,7 +4,9 @@ Demo script (Python) of particle swarm optimization (PSO) partly translated from
 
 
 - Slide: [https://slides.com/iphysresearch/pso](https://slides.com/iphysresearch/pso)
-- Blog: TBA
+- Blog: [Particle Swarm Optimization From Scratch Using Python](https://slides.com/iphysresearch/pso)
+- Video: [Bilibili](https://www.bilibili.com/video/BV1kv411h7sC/)
+
 
 
 ## Mock Data Challenge
