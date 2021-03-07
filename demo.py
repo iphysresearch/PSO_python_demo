@@ -89,4 +89,4 @@ if __name__ == '__main__':
                                                              outResults['bestQcCoefs'][1],
                                                              outResults['bestQcCoefs'][2]))
     np.save('output_results',outResults)
-    np.save('output_struct',output_struct)
+    np.save('output_struct',outStruct)
