@@ -6,7 +6,7 @@ from scipy.interpolate import interp1d
 from PSO import *  # demo PSO codes!
 
 import matplotlib
-matplotlib.use('Tkagg') # Must be before importing matplotlib.pyplot or pylab!
+matplotlib.use('agg') # Must be before importing matplotlib.pyplot or pylab!
 import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
@@ -63,30 +63,30 @@ if __name__ == '__main__':
     plt.ylabel('PSD')
     plt.legend()
     plt.savefig('output_psd.png', dpi=100)
-    plt.show()
 
-    # Number of independent PSO runs
-    nRuns = 8
 
-    ## PSO
-    # Input parameters for CRCBQCHRPPSO
-    inParams = {
-        'dataX': t,
-        'dataY': dataY,
-        'dataXSq': t**2,
-        'dataXCb': t**3,
-        'psdPosFreq': psdPosFreq,
-        'sampFreq': Fs,
-        'rmin': rmin,
-        'rmax': rmax,
-    }
-    # CRCBQCHRPPSOPSD runs PSO on the CRCBQCHRPFITFUNC fitness function. As an
-    # illustration of usage, we change one of the PSO parameters from its
-    # default value.
-    outResults, outStruct = crcbqcpsopsd(inParams, {'maxSteps': 2000}, nRuns)
+#     # Number of independent PSO runs
+#     nRuns = 8
 
-    print('Estimated parameters: a1={}; a2={}; a3={}'.format(outResults['bestQcCoefs'][0],
-                                                             outResults['bestQcCoefs'][1],
-                                                             outResults['bestQcCoefs'][2]))
-    np.save('output_results',outResults)
-    np.save('output_struct',output_struct)
+#     ## PSO
+#     # Input parameters for CRCBQCHRPPSO
+#     inParams = {
+#         'dataX': t,
+#         'dataY': dataY,
+#         'dataXSq': t**2,
+#         'dataXCb': t**3,
+#         'psdPosFreq': psdPosFreq,
+#         'sampFreq': Fs,
+#         'rmin': rmin,
+#         'rmax': rmax,
+#     }
+#     # CRCBQCHRPPSOPSD runs PSO on the CRCBQCHRPFITFUNC fitness function. As an
+#     # illustration of usage, we change one of the PSO parameters from its
+#     # default value.
+#     outResults, outStruct = crcbqcpsopsd(inParams, {'maxSteps': 2000}, nRuns)
+
+#     print('Estimated parameters: a1={}; a2={}; a3={}'.format(outResults['bestQcCoefs'][0],
+#                                                              outResults['bestQcCoefs'][1],
+#                                                              outResults['bestQcCoefs'][2]))
+#     np.save('output_results',outResults)
+#     np.save('output_struct',output_struct)
