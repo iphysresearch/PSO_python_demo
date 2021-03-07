@@ -51,7 +51,7 @@ if __name__ == '__main__':
     psdPosFreq = interp1d(f,pxxSmth)(posFreq)
 
     # Plot PSDs for the noise and noise + signal.
-    plt.figure(dpi=100)
+    plt.figure()
     plt.plot(f,pxx, label='noise')
     plt.plot(f,pxxSmth, label='noise (smoth)')
     [f, pxxY] = welch(dataY, fs=Fs, 
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     plt.xlabel('Frequency (Hz)')
     plt.ylabel('PSD')
     plt.legend()
-    plt.savefig('output_psd.png', dpi=100)
+    plt.savefig('output_psd.png', dpi=200)
 
 
     # Number of independent PSO runs
@@ -85,8 +85,31 @@ if __name__ == '__main__':
     # default value.
     outResults, outStruct = crcbqcpsopsd(inParams, {'maxSteps': 2000}, nRuns)
 
+    ## Plot sig
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    a=ax.scatter(t, dataY, marker='.', s=5, #label='analysisData'
+                 )
+    a.set_label('analysisData')
+    for lpruns in range(nRuns):
+        b,=ax.plot(t, outResults['allRunsOutput'][lpruns]['estSig'],
+                 color=[51/255,255/255,153/255], lw=.4*2)
+    b.set_label('estSig')
+    c,=ax.plot(t, outResults['bestSig'], #label='BestSig',
+             color=[76/255,153/255,0/255],lw=.2*2)
+    c.set_label('BestSig')
+    plt.legend()
+    plt.savefig('output_sig.png', dpi=200)
+
+    # Print estimated parameters
     print('Estimated parameters: a1={}; a2={}; a3={}'.format(outResults['bestQcCoefs'][0],
                                                              outResults['bestQcCoefs'][1],
                                                              outResults['bestQcCoefs'][2]))
+    for lpruns in range(nRuns):
+        print('Run No.{}:\nbestFitness={:.2f}'.format(lpruns+1, outStruct[lpruns]['bestFitness']) )
+        print('a1={:.4f}; a2={:.4f}; a3={:.4f}'.format(outResults['allRunsOutput'][lpruns]['qcCoefs'][0],
+                                           outResults['allRunsOutput'][lpruns]['qcCoefs'][1],
+                                           outResults['allRunsOutput'][lpruns]['qcCoefs'][2]))    
+    # Save
     np.save('output_results',outResults)
     np.save('output_struct',outStruct)
